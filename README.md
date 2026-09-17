@@ -81,12 +81,18 @@ Every time this runs:
      (Asana task creation is internal-only and unaffected by this check).
    - Only post to Slack if every member in the channel is in the internal allowlist.
 
-5. If the safety check passes, post a Slack message to the matched channel with:
-   the meeting title, the date, and the key takeaways as bullet points.
-
-6. For each action item, identify the named owner. Look them up in Asana's workspace
+5. For each action item, identify the named owner. Look them up in Asana's workspace
    users by name match, and create a task in the matched project, assigned to them,
    titled with the action item text. If no due date is mentioned, set one week out.
+   If no matching Asana user is found, create the task unassigned and note the
+   intended owner in the task description.
+
+6. If the safety check (step 4) passed, post a Slack message to the matched channel
+   with the meeting title and date, followed by two sections:
+   - "Key takeaways" — the call's key takeaways as bullet points.
+   - "To-do's (created in Asana)" — one bullet per action item created in step 5,
+     formatted as "Owner — action item text (due date)".
+   If the safety check failed, skip this step (the Asana tasks from step 5 still stand).
 ```
 
 ---
