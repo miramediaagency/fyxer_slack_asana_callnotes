@@ -11,7 +11,10 @@ for the whole team. Everyone who wants their own client calls auto-processed nee
 
 1. Open Claude Cowork → Scheduled tasks → New task
 2. Connect your own Fyxer, Slack, and Asana accounts (if not already connected)
-3. Set it to recur (e.g. every 30 minutes)
+3. Set it to recur every **10–15 minutes** (this is a polling loop, not a push
+   trigger — Fyxer has no "recording ready" webhook, so a call is only ever
+   picked up on the next scheduled run; 10–15 min keeps that gap tight without
+   over-polling)
 4. Paste the instructions block below as the task prompt
 
 Everyone uses the identical instructions — only your own connected accounts differ.
